@@ -6,3 +6,4 @@ lib/*
 
 #files
 JBot.iml
+!lib/Put Libraries Here
