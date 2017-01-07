@@ -1,4 +1,8 @@
+/folders
 .idea/
 Keys/
+out/
+
+/files and lib
 JBot.iml
 lib/**
