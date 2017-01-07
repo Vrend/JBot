@@ -2,7 +2,7 @@
 .idea/
 Keys/
 out/
+lib/*
 
 #files and lib
 JBot.iml
-/lib/JDA-3.0.BETA2_108-withDependencies.jar
