@@ -3,6 +3,7 @@ package Listeners;
 import Util.BadCommandException;
 import Util.Command;
 import Util.CommandHandler;
+import Util.Permissions;
 import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.entities.*;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
@@ -65,7 +66,7 @@ public class messageListener extends ListenerAdapter
                 {
                     try
                     {
-                        if(req.getPermLevel() == 0)
+                        if(Permissions.checkPermission(e, req.getPermLevel()))
                         {
                             req.run(e, args);
                         }

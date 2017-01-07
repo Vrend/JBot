@@ -1,4 +1,4 @@
-package Admin;
+package Commands;
 
 import Util.BadCommandException;
 import Util.Command;
