@@ -26,7 +26,7 @@ public class Permissions
         {
             return true;
         }
-        else if(lvl == 1 && isAdmin)
+        else if(lvl == 1 && (isAdmin || isOwner))
         {
             return true;
         }
