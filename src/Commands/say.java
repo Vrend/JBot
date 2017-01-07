@@ -2,7 +2,9 @@ package Commands;
 
 import Util.BadCommandException;
 import Util.Command;
+import net.dv8tion.jda.core.entities.Message;
 import net.dv8tion.jda.core.entities.MessageChannel;
+import net.dv8tion.jda.core.entities.TextChannel;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
 
@@ -13,6 +15,10 @@ public class say implements Command
     public void run(MessageReceivedEvent e, String[] args) throws BadCommandException
     {
         MessageChannel channel = e.getChannel();
+
+        System.out.println(e.getMessage().getContent());
+
+        e.getMessage().deleteMessage().queue();
 
         String msg = "";
 
