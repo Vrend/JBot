@@ -5,6 +5,7 @@ import net.dv8tion.jda.core.JDABuilder;
 
 public class Main
 {
+    //test
     public static void main(String[] args)
     {
         String botapi;
