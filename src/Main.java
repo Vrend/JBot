@@ -1,3 +1,4 @@
+import Listeners.messageListener;
 import Util.IO;
 import net.dv8tion.jda.core.AccountType;
 import net.dv8tion.jda.core.JDA;
@@ -13,7 +14,7 @@ public class Main
 
         try
         {
-            JDA jda = new JDABuilder(AccountType.BOT).setToken(botapi).buildBlocking();
+            JDA jda = new JDABuilder(AccountType.BOT).setToken(botapi).addListener(new messageListener()).buildBlocking();
         }
         catch(Exception e)
         {
