@@ -1,5 +1,5 @@
 # JBot
-Discord bot
+A Discord bot
 
 
 JBot is a work in progress
