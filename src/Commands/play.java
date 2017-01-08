@@ -32,31 +32,36 @@ public class play implements Command
 
         AudioPlayerManager playerManager = AudioHolder.getManager();
 
-        AudioPlayer player = playerManager.createPlayer();
+        TrackSchedule ts = AudioHolder.getSchedule();
 
-        TrackSchedule ts = new TrackSchedule(player);
-        player.addListener(ts);
+        AudioPlayer player = AudioHolder.getPlayer();
 
-        playerManager.loadItem(args[1], new AudioLoadResultHandler() {
+        playerManager.loadItem(args[1], new AudioLoadResultHandler()
+        {
                     @Override
-                    public void trackLoaded(AudioTrack track) {
+                    public void trackLoaded(AudioTrack track)
+                    {
                         ts.queue(track);
                     }
 
                     @Override
-                    public void playlistLoaded(AudioPlaylist playlist) {
-                        for (AudioTrack track : playlist.getTracks()) {
+                    public void playlistLoaded(AudioPlaylist playlist)
+                    {
+                        for (AudioTrack track : playlist.getTracks())
+                        {
                             ts.queue(track);
                         }
                     }
 
                     @Override
-                    public void noMatches() {
+                    public void noMatches()
+                    {
                         // Notify the user that we've got nothing
                     }
 
                     @Override
-                    public void loadFailed(FriendlyException throwable) {
+                    public void loadFailed(FriendlyException throwable)
+                    {
                         // Notify the user that everything exploded
                     }
                 });
