@@ -1,9 +1,9 @@
 #folders
 .idea/
 Keys/
-out/
+target/
 lib/*
 
 #files
 JBot.iml
-!lib/Put Libraries Here
+!lib/
