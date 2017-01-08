@@ -15,6 +15,7 @@ public class dismiss implements Command
         AudioManager am = e.getGuild().getAudioManager();
         am.closeAudioConnection();
 
+        AudioHolder.getSchedule().clearQueue();
 
         e.getChannel().sendMessage("It seems my services are needed elsewhere. Good day.").queue();
     }

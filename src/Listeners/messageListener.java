@@ -38,60 +38,61 @@ public class messageListener extends ListenerAdapter
             System.out.println("Error in message catching. Please repair net.");
         }
 
-        if(e.getMessage().getContent() != null)
+        if(e.isFromType(ChannelType.TEXT))
         {
-            String msg = e.getMessage().getContent();
-
-            String[] args = msg.split(" ");
-
-            if(args[0].startsWith("'"))
+            if(e.getMessage().getContent() != null)
             {
-                CommandHandler cmds = new CommandHandler();
+                String msg = e.getMessage().getContent();
 
-                Command req = null;
+                String[] args = msg.split(" ");
 
-                try
+                if(args[0].startsWith("'"))
                 {
-                    req = cmds.getCommand(args[0].substring(1));
-                }
-                catch (BadCommandException e1)
-                {
-                    System.out.println(e1.getMessage());
-                    MessageChannel channel = e.getChannel();
-                    String name = e.getMember().getAsMention();
-                    channel.sendMessage(name+": `"+e1.getMessage()+"`").queue();
-                }
+                    CommandHandler cmds = new CommandHandler();
 
-                if(req != null)
-                {
+                    Command req = null;
+
                     try
                     {
-                        if(Permissions.checkPermission(e, req.getPermLevel()))
-                        {
-                            req.run(e, args);
-                        }
-                        else
-                        {
-                            MessageChannel mc = e.getChannel();
-                            String name = e.getMember().getAsMention();
-                            mc.sendMessage(name+": `You don't have the required permissions to run this`").queue();
-                        }
-
+                        req = cmds.getCommand(args[0].substring(1));
                     }
                     catch (BadCommandException e1)
                     {
                         System.out.println(e1.getMessage());
-
                         MessageChannel channel = e.getChannel();
                         String name = e.getMember().getAsMention();
                         channel.sendMessage(name+": `"+e1.getMessage()+"`").queue();
-
                     }
-                }
 
+                    if(req != null)
+                    {
+                        try
+                        {
+                            if(Permissions.checkPermission(e, req.getPermLevel()))
+                            {
+                                req.run(e, args);
+                            }
+                            else
+                            {
+                                MessageChannel mc = e.getChannel();
+                                String name = e.getMember().getAsMention();
+                                mc.sendMessage(name+": `You don't have the required permissions to run this`").queue();
+                            }
+
+                        }
+                        catch (BadCommandException e1)
+                        {
+                            System.out.println(e1.getMessage());
+
+                            MessageChannel channel = e.getChannel();
+                            String name = e.getMember().getAsMention();
+                            channel.sendMessage(name+": `"+e1.getMessage()+"`").queue();
+
+                        }
+                    }
+
+                }
             }
         }
-
-
     }
 }
