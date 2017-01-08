@@ -31,15 +31,24 @@ public class TrackSchedule extends AudioEventAdapter
      *
      * @param track The track to play or add to queue.
      */
-    public void queue(AudioTrack track)
+    public String queue(AudioTrack track)
     {
         // Calling startTrack with the noInterrupt set to true will start the track only if nothing is currently playing. If
         // something is playing, it returns false and does nothing. In that case the player was already playing so this
         // track goes to the queue instead.
+
+        long dur = track.getDuration();
+        String name = track.getInfo().title;
+
+        String durs = Time.parseTime(dur);
+
+        String output = "`"+name+" was added to the queue. [ "+durs+" ]`";
+
         if (!player.startTrack(track, true))
         {
             queue.offer(track);
         }
+        return output;
     }
 
     /**
@@ -86,4 +95,29 @@ public class TrackSchedule extends AudioEventAdapter
     {
         return paused;
     }
+
+    public String getSongInfo()
+    {
+        String output;
+
+        if(player.getPlayingTrack() != null)
+        {
+            long current = player.getPlayingTrack().getPosition();
+            long end = player.getPlayingTrack().getDuration();
+
+            String currents = Time.parseTime(current);
+            String ends = Time.parseTime(end);
+            String name = player.getPlayingTrack().getInfo().title;
+
+            output = "`Currently playing: "+name+" [ "+currents+" : "+ends+" ]`";
+        }
+        else
+        {
+            output = "`No song currently playing`";
+        }
+
+
+        return output;
+    }
+
 }

@@ -19,6 +19,7 @@ public class AudioHolder
         player = apm.createPlayer();
         ts = new TrackSchedule(player);
         player.addListener(ts);
+        player.setVolume(25);
     }
 
     public static AudioPlayerManager getManager()

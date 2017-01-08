@@ -25,9 +25,21 @@ public class play implements Command
             s.run(e, args);
         }
 
-        if(args.length != 2)
+        if(args.length < 2)
         {
             throw new BadCommandException("Malformed Command Request: Improper Arguments");
+        }
+
+        String input = args[1];
+
+        if(args.length > 2)
+        {
+            input = args[1];
+            for (int i = 2; i < args.length; i++)
+            {
+                input += " ";
+                input += args[i];
+            }
         }
 
         AudioPlayerManager playerManager = AudioHolder.getManager();
@@ -36,12 +48,15 @@ public class play implements Command
 
         AudioPlayer player = AudioHolder.getPlayer();
 
-        playerManager.loadItem(args[1], new AudioLoadResultHandler()
+        System.out.println(input);
+
+        playerManager.loadItem(input, new AudioLoadResultHandler()
         {
                     @Override
                     public void trackLoaded(AudioTrack track)
                     {
-                        ts.queue(track);
+                        String info = ts.queue(track);
+                        e.getChannel().sendMessage(info).queue();
                     }
 
                     @Override
@@ -49,20 +64,21 @@ public class play implements Command
                     {
                         for (AudioTrack track : playlist.getTracks())
                         {
-                            ts.queue(track);
+                            String info = ts.queue(track);
+                            e.getChannel().sendMessage(info).queue();
                         }
                     }
 
                     @Override
                     public void noMatches()
                     {
-                        // Notify the user that we've got nothing
+                        e.getChannel().sendMessage(e.getMember().getAsMention()+": `No matches found.`").queue();
                     }
 
                     @Override
                     public void loadFailed(FriendlyException throwable)
                     {
-                        // Notify the user that everything exploded
+                        e.getChannel().sendMessage(e.getMember().getAsMention()+": `Everything is exploding, kittens and children are massacred, and the world is ending. (Load failed)`").queue();
                     }
                 });
         AudioManager am = e.getGuild().getAudioManager();
