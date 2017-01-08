@@ -17,7 +17,7 @@ public class Permissions
 
         String owner = IO.getKey("Keys/owneruser.key");
 
-        if(e.getMember().getUser().getName().equals(owner))
+        if(e.getMember().getUser().getId().equals(owner))
         {
             isOwner = true;
         }
