@@ -1,0 +1,15 @@
+In order for you to use this project, you're going to need to make sure maven is configured
+
+This is in order to use lavaplayer, which is a maven-based dependency
+
+Then you need to download JDA and add it as a library dependency
+
+Then you must make sure that the java version is set to 8, otherwise you will have a bunch of errors in the "play" class
+
+You also need two keys to run the program
+
+You will ned to create a directory called "Keys" and put a "botapi.key" and "owneruser.key" in the folder
+
+The botapi is where you put the bot token, so it can login
+
+the owneruser is the username of the owner, which is for permissions
