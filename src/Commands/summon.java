@@ -31,7 +31,8 @@ public class summon implements Command
     }
 
     @Override
-    public int getPermLevel() {
+    public int getPermLevel()
+    {
         return 0;
     }
 }
