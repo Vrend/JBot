@@ -16,6 +16,8 @@ public class TrackSchedule extends AudioEventAdapter
     private final AudioPlayer player;
     private final BlockingQueue<AudioTrack> queue;
     private static boolean paused;
+    private static int vol;
+    private static boolean muted = false;
 
     /**
      * @param player The audio player this scheduler uses
@@ -119,5 +121,28 @@ public class TrackSchedule extends AudioEventAdapter
 
         return output;
     }
+
+    public boolean mute()
+    {
+        if(muted)
+        {
+            muted = false;
+            player.setVolume(vol);
+        }
+        else
+        {
+            muted = true;
+            vol = player.getVolume();
+            player.setVolume(0);
+        }
+
+        return muted;
+    }
+
+    public void changeVolume(int volume)
+    {
+        player.setVolume(volume);
+    }
+
 
 }
