@@ -12,4 +12,4 @@ You will ned to create a directory called "Keys" and put a "botapi.key" and "own
 
 The botapi is where you put the bot token, so it can login
 
-the owneruser is the username of the owner, which is for permissions
+the owneruser is your user id, which is for permissions. You can get this by typing \@YOURNAME#numbers in discord
