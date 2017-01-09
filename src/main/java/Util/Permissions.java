@@ -37,7 +37,7 @@ public class Permissions
 
     public static boolean checkOwner(String id)
     {
-        String owner = IO.getKey("Keys"+ File.separator+"owneruser.key");
+        String owner = IO.getKey("Keys/owneruser.key");
         return id.equals(owner);
     }
 }

@@ -15,8 +15,8 @@ public class CommandHandler
 
     public void loadCommands()
     {
-        File admin = new File("src"+File.separator+"Admin");
-        File commands = new File("src"+File.separator+"Commands");
+        File admin = new File("src"+File.separator+"main"+File.separator+"java"+File.separator+"Admin");
+        File commands = new File("src"+File.separator+"main"+File.separator+"java"+File.separator+"Commands");
 
         for (File f : admin.listFiles())
         {

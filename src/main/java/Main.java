@@ -16,7 +16,7 @@ public class Main
     {
         String botapi;
 
-        botapi = IO.getKey("Keys"+ File.separator+"botapi.key");
+        botapi = IO.getKey("Keys/botapi.key");
 
         AudioHolder.init();
 
@@ -29,6 +29,7 @@ public class Main
         catch(Exception e)
         {
             System.out.println("Error in JDA Initialization");
+            System.exit(1);
         }
 
     }
