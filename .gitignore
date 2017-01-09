@@ -3,6 +3,7 @@
 Keys/
 target/
 lib/*
+out/
 
 #files
 JBot.iml

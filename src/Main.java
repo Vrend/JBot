@@ -6,6 +6,7 @@ import net.dv8tion.jda.core.AccountType;
 import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.JDABuilder;
 
+import java.io.File;
 import java.util.ArrayList;
 
 public class Main
@@ -15,7 +16,7 @@ public class Main
     {
         String botapi;
 
-        botapi = IO.getKey("Keys/botapi.key");
+        botapi = IO.getKey("Keys"+ File.separator+"botapi.key");
 
         AudioHolder.init();
 

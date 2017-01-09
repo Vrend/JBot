@@ -3,6 +3,8 @@ package Util;
 import net.dv8tion.jda.core.Permission;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
+import java.io.File;
+
 public class Permissions
 {
     public static boolean checkPermission(MessageReceivedEvent e, int lvl)
@@ -35,7 +37,7 @@ public class Permissions
 
     public static boolean checkOwner(String id)
     {
-        String owner = IO.getKey("Keys/owneruser.key");
+        String owner = IO.getKey("Keys"+ File.separator+"owneruser.key");
         return id.equals(owner);
     }
 }
