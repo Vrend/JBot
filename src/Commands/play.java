@@ -48,8 +48,6 @@ public class play implements Command
 
         AudioPlayer player = AudioHolder.getPlayer();
 
-        System.out.println(input);
-
         playerManager.loadItem(input, new AudioLoadResultHandler()
         {
                     @Override
@@ -81,6 +79,7 @@ public class play implements Command
                         e.getChannel().sendMessage(e.getMember().getAsMention()+": `Everything is exploding, kittens and children are massacred, and the world is ending. (Load failed)`").queue();
                     }
                 });
+
         AudioManager am = e.getGuild().getAudioManager();
 
         am.setSendingHandler(new AudioPlayerSendHandler(player));

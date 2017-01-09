@@ -5,8 +5,6 @@ public class Time
 {
     public static String parseTime(long input)
     {
-        System.out.println(input);
-
        int secs = (int) input/1000;
        int hours = secs/60;
        secs = secs - (hours*60);

@@ -1,9 +1,12 @@
 import Util.AudioHolder;
 import Listeners.messageListener;
 import Util.IO;
+import Util.Vote;
 import net.dv8tion.jda.core.AccountType;
 import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.JDABuilder;
+
+import java.util.ArrayList;
 
 public class Main
 {
@@ -16,6 +19,8 @@ public class Main
 
         AudioHolder.init();
 
+        Vote.init();
+
         try
         {
             JDA jda = new JDABuilder(AccountType.BOT).setToken(botapi).addListener(new messageListener()).buildBlocking();
@@ -26,6 +31,5 @@ public class Main
         }
 
     }
-
 
 }
