@@ -1,4 +1,4 @@
-package Util;
+package JBOT.Util;
 
 import net.dv8tion.jda.core.Permission;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;

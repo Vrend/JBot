@@ -1,8 +1,8 @@
-package Commands;
+package JBOT.Commands;
 
-import Util.AudioHolder;
-import Util.BadCommandException;
-import Util.Command;
+import JBOT.Util.AudioHolder;
+import JBOT.Util.BadCommandException;
+import JBOT.Util.Command;
 import com.sedmelluq.discord.lavaplayer.player.AudioPlayerManager;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.core.managers.AudioManager;

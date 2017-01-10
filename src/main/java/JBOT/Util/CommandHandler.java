@@ -1,5 +1,6 @@
-package Util;
+package JBOT.Util;
 
+import JBOT.Main;
 import java.io.File;
 import java.util.ArrayList;
 
@@ -15,10 +16,18 @@ public class CommandHandler
 
     public void loadCommands()
     {
-        File admin = new File("src"+File.separator+"main"+File.separator+"java"+File.separator+"Admin");
-        File commands = new File("src"+File.separator+"main"+File.separator+"java"+File.separator+"Commands");
+        //File admin = new File("src"+File.separator+"main"+File.separator+"java"+File.separator+"Admin");
+        //File admin = new File("Admin");
+        //File commands = new File("src"+File.separator+"main"+File.separator+"java"+File.separator+"Commands");
+        //File commands = new File("Commands");
+        File admin = null;
+        File commands = null;
 
-        for (File f : admin.listFiles())
+        ArrayList<String>[] lists = Main.getCommands();
+        acmds = lists[0];
+        cmds = lists[1];
+
+       /* for (File f : admin.listFiles())
         {
             String s = f.getName();
             s = s.replace(".java", "");
@@ -29,7 +38,7 @@ public class CommandHandler
             String s = f.getName();
             s = s.replace(".java", "");
             cmds.add(s);
-        }
+        }*/
     }
 
     public Command getCommand(String name) throws BadCommandException
@@ -38,7 +47,7 @@ public class CommandHandler
         {
             try
             {
-                Class c = Class.forName("Commands."+name);
+                Class c = Class.forName("JBOT.Commands."+name);
                 Command cmd = (Command) c.newInstance();
                 return cmd;
             }
@@ -52,7 +61,7 @@ public class CommandHandler
         {
             try
             {
-                Class c = Class.forName("Admin."+name);
+                Class c = Class.forName("JBOT.Admin."+name);
                 Command cmd = (Command) c.newInstance();
                 return cmd;
             }

@@ -1,9 +1,9 @@
-package Commands;
+package JBOT.Commands;
 
-import Util.AudioHolder;
-import Util.BadCommandException;
-import Util.Command;
-import Util.TrackSchedule;
+import JBOT.Util.AudioHolder;
+import JBOT.Util.BadCommandException;
+import JBOT.Util.Command;
+import JBOT.Util.TrackSchedule;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
 public class pause implements Command

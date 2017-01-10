@@ -1,10 +1,10 @@
-package Commands;
+package JBOT.Commands;
 
-import Util.AudioPlayerSendHandler;
-import Util.BadCommandException;
-import Util.Command;
-import Util.TrackSchedule;
-import Util.AudioHolder;
+import JBOT.Util.AudioPlayerSendHandler;
+import JBOT.Util.BadCommandException;
+import JBOT.Util.Command;
+import JBOT.Util.TrackSchedule;
+import JBOT.Util.AudioHolder;
 import com.sedmelluq.discord.lavaplayer.player.AudioLoadResultHandler;
 import com.sedmelluq.discord.lavaplayer.player.AudioPlayer;
 import com.sedmelluq.discord.lavaplayer.player.AudioPlayerManager;

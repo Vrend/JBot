@@ -1,4 +1,4 @@
-package Util;
+package JBOT.Util;
 
 import com.sedmelluq.discord.lavaplayer.player.AudioPlayer;
 import com.sedmelluq.discord.lavaplayer.player.event.AudioEventAdapter;

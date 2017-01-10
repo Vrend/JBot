@@ -1,9 +1,9 @@
-package Listeners;
+package JBOT.Listeners;
 
-import Util.BadCommandException;
-import Util.Command;
-import Util.CommandHandler;
-import Util.Permissions;
+import JBOT.Util.BadCommandException;
+import JBOT.Util.Command;
+import JBOT.Util.CommandHandler;
+import JBOT.Util.Permissions;
 import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.entities.*;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;

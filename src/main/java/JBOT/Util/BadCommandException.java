@@ -1,4 +1,4 @@
-package Util;
+package JBOT.Util;
 
 public class BadCommandException extends Exception
 {

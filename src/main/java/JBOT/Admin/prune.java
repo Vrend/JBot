@@ -1,12 +1,14 @@
-package Commands;
+package JBOT.Admin;
 
-import Util.AudioHolder;
-import Util.BadCommandException;
-import Util.Command;
-import Util.TrackSchedule;
+import JBOT.Util.BadCommandException;
+import JBOT.Util.Command;
+import net.dv8tion.jda.core.MessageHistory;
+import net.dv8tion.jda.core.entities.Message;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
-public class volume implements Command
+import java.util.List;
+
+public class prune implements Command
 {
     @Override
     public void run(MessageReceivedEvent e, String[] args) throws BadCommandException
@@ -16,15 +18,13 @@ public class volume implements Command
             throw new BadCommandException("Malformed Command Request: Improper Arguments");
         }
 
-        TrackSchedule ts = AudioHolder.getSchedule();
-
-
         try
         {
-            int num = Integer.parseInt(args[1]);
-            ts.changeVolume(num);
+            MessageHistory mh = e.getChannel().getHistory();
+            List<Message> messages = mh.retrievePast(Integer.parseInt(args[1])).block();
+            e.getTextChannel().deleteMessages(messages).queue();
         }
-        catch(Exception ex)
+        catch(Exception e1)
         {
             throw new BadCommandException("Malformed Command Request: Improper Arguments");
         }
@@ -35,6 +35,6 @@ public class volume implements Command
     @Override
     public int getPermLevel()
     {
-        return 0;
+        return 1;
     }
 }

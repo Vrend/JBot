@@ -1,7 +1,7 @@
-package Admin;
+package JBOT.Admin;
 
-import Util.BadCommandException;
-import Util.Command;
+import JBOT.Util.BadCommandException;
+import JBOT.Util.Command;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
 public class shutdown implements Command

@@ -1,4 +1,4 @@
-package Util;
+package JBOT.Util;
 
 import java.util.HashMap;
 

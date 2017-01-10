@@ -1,7 +1,7 @@
-package Commands;
+package JBOT.Commands;
 
-import Util.BadCommandException;
-import Util.Command;
+import JBOT.Util.BadCommandException;
+import JBOT.Util.Command;
 import net.dv8tion.jda.core.entities.MessageChannel;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
