@@ -1,7 +1,10 @@
 package JBOT.Commands;
 
 import JBOT.Main;
-import JBOT.Util.*;
+import JBOT.Util.BadCommandException;
+import JBOT.Util.Command;
+import JBOT.Util.Permissions;
+import JBOT.Util.Vote;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
 public class skip implements Command

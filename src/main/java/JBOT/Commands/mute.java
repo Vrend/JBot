@@ -26,6 +26,6 @@ public class mute implements Command
     @Override
     public int getPermLevel()
     {
-        return 0;
+        return 1;
     }
 }

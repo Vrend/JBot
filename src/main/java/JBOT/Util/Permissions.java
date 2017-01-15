@@ -3,8 +3,6 @@ package JBOT.Util;
 import net.dv8tion.jda.core.Permission;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
-import java.io.File;
-
 public class Permissions
 {
     public static boolean checkPermission(MessageReceivedEvent e, int lvl)

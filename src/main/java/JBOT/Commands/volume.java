@@ -1,7 +1,6 @@
 package JBOT.Commands;
 
 import JBOT.Main;
-import JBOT.Util.AudioHolder;
 import JBOT.Util.BadCommandException;
 import JBOT.Util.Command;
 import JBOT.Util.TrackSchedule;
@@ -36,6 +35,6 @@ public class volume implements Command
     @Override
     public int getPermLevel()
     {
-        return 0;
+        return 1;
     }
 }
