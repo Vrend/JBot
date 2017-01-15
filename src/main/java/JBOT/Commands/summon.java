@@ -27,7 +27,7 @@ public class summon implements Command
         }
 
 
-        e.getChannel().sendMessage("Greetings, master *"+e.getMember().getEffectiveName()+"*").queue();
+        e.getChannel().sendMessage("```Greetings, master *"+e.getMember().getEffectiveName()+"*```").queue();
     }
 
     @Override

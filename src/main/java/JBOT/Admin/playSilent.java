@@ -11,6 +11,7 @@ import com.sedmelluq.discord.lavaplayer.player.AudioPlayerManager;
 import com.sedmelluq.discord.lavaplayer.tools.FriendlyException;
 import com.sedmelluq.discord.lavaplayer.track.AudioPlaylist;
 import com.sedmelluq.discord.lavaplayer.track.AudioTrack;
+import net.dv8tion.jda.core.entities.VoiceChannel;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.core.managers.AudioManager;
 
@@ -21,8 +22,15 @@ public class playSilent implements Command
     {
         if(e.getGuild().getAudioManager().getConnectedChannel() == null)
         {
-            Command s = new summon();
-            s.run(e, args);
+
+            AudioManager am = e.getGuild().getAudioManager();
+
+            VoiceChannel vc = e.getMember().getVoiceState().getChannel();
+
+            if(vc != null)
+            {
+                am.openAudioConnection(vc);
+            }
         }
 
         if(args.length < 2)

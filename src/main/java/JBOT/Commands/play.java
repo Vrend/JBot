@@ -59,23 +59,27 @@ public class play implements Command
                     @Override
                     public void playlistLoaded(AudioPlaylist playlist)
                     {
+                        int i = 0;
                         for (AudioTrack track : playlist.getTracks())
                         {
                             String info = ts.queue(track);
-                            e.getChannel().sendMessage(info).queue();
+                            i++;
                         }
+
+                        String msg = "```Added "+i+" songs to the queue```";
+                        e.getChannel().sendMessage(msg).queue();
                     }
 
                     @Override
                     public void noMatches()
                     {
-                        e.getChannel().sendMessage(e.getMember().getAsMention()+": `No matches found.`").queue();
+                        e.getChannel().sendMessage(e.getMember().getAsMention()+": ```No matches found.```").queue();
                     }
 
                     @Override
                     public void loadFailed(FriendlyException throwable)
                     {
-                        e.getChannel().sendMessage(e.getMember().getAsMention()+": `Everything is exploding, kittens and children are massacred, and the world is ending. (Load failed)`").queue();
+                        e.getChannel().sendMessage(e.getMember().getAsMention()+": ```Everything is exploding, kittens and children are massacred, and the world is ending. (Load failed)```").queue();
                     }
                 });
 

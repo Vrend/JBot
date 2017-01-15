@@ -1,21 +1,18 @@
 package JBOT.Commands;
 
-import JBOT.Main;
+import JBOT.Admin.playSilent;
 import JBOT.Util.BadCommandException;
 import JBOT.Util.Command;
-import JBOT.Util.TrackSchedule;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
-public class cs implements Command
+public class pussy implements Command
 {
     @Override
     public void run(MessageReceivedEvent e, String[] args) throws BadCommandException
     {
-        TrackSchedule ts = Main.getGuildAudioPlayer(e.getGuild()).getSchedule();
-        String msg = ts.getSongInfo();
-
-        e.getChannel().sendMessage(msg).queue();
-
+        Command play = new playSilent();
+        String[] arguments = {"playSilent", "https://www.youtube.com/watch?v=RPfx_jFZQuI"};
+        play.run(e, arguments);
     }
 
     @Override

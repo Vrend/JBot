@@ -12,7 +12,7 @@ public class skip implements Command
         if(Permissions.checkOwner(e.getMember().getUser().getId()))
         {
             Main.getGuildAudioPlayer(e.getGuild()).getSchedule().nextTrack();
-            e.getChannel().sendMessage("`Skipping song....`").queue();
+            e.getChannel().sendMessage("```Skipping song....```").queue();
         }
         else
         {
@@ -29,13 +29,13 @@ public class skip implements Command
 
             if(v.addVote())
             {
-                e.getChannel().sendMessage("`Skipping song....`").queue();
+                e.getChannel().sendMessage("```Skipping song....```").queue();
                 Main.getGuildAudioPlayer(e.getGuild()).getSchedule().nextTrack();
                 Vote.getList().remove("skip"+e.getGuild().getId());
             }
             else
             {
-                String msg = "`Vote acknowledged, the song will be skipped in " +v.getLeft()+" votes.`";
+                String msg = "```Vote acknowledged, the song will be skipped in " +v.getLeft()+" votes.```";
                 e.getChannel().sendMessage(msg).queue();
             }
         }

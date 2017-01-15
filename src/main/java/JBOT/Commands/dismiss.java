@@ -16,7 +16,7 @@ public class dismiss implements Command
 
         Main.getGuildAudioPlayer(e.getGuild()).getSchedule().clearQueue();
 
-        e.getChannel().sendMessage("It seems my services are needed elsewhere. Good day.").queue();
+        e.getChannel().sendMessage("```It seems my services are needed elsewhere. Good day.```").queue();
     }
 
     @Override

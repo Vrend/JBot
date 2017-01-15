@@ -1,5 +1,6 @@
 package JBOT.Util;
 
+import JBOT.Commands.cs;
 import com.sedmelluq.discord.lavaplayer.player.AudioPlayer;
 import com.sedmelluq.discord.lavaplayer.player.event.AudioEventAdapter;
 import com.sedmelluq.discord.lavaplayer.track.AudioTrack;
@@ -44,7 +45,7 @@ public class TrackSchedule extends AudioEventAdapter
 
         String durs = Time.parseTime(dur);
 
-        String output = "`"+name+" was added to the queue. [ "+durs+" ]`";
+        String output = "```"+name+" was added to the queue. [ "+durs+" ]```";
 
         if (!player.startTrack(track, true))
         {
@@ -111,11 +112,11 @@ public class TrackSchedule extends AudioEventAdapter
             String ends = Time.parseTime(end);
             String name = player.getPlayingTrack().getInfo().title;
 
-            output = "`Currently playing: "+name+" [ "+currents+" : "+ends+" ]`";
+            output = "```Currently playing: "+name+" [ "+currents+" : "+ends+" ]```";
         }
         else
         {
-            output = "`No song currently playing`";
+            output = "```No song currently playing```";
         }
 
 
@@ -144,5 +145,30 @@ public class TrackSchedule extends AudioEventAdapter
         player.setVolume(volume);
     }
 
+
+    public String getQueue()
+    {
+        String res = "```";
+        Object[] tracks = queue.toArray();
+
+        AudioTrack playing = player.getPlayingTrack();
+
+        long d = playing.getDuration();
+        String ds = Time.parseTime(d);
+        res += "1. "+playing.getInfo().title + " [ " + ds+" ]\n";
+
+
+        for (int i = 0; i < tracks.length; i++)
+        {
+            AudioTrack track = (AudioTrack) tracks[i];
+            long dur = track.getDuration();
+            String durs = Time.parseTime(dur);
+
+            res += (i+2)+". "+track.getInfo().title + " [ " + durs+" ]\n";
+        }
+        res += "```";
+
+        return res;
+    }
 
 }

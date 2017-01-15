@@ -15,11 +15,11 @@ public class mute implements Command
         boolean b = ts.mute();
         if(b)
         {
-            e.getChannel().sendMessage("`Music has been muted.`").queue();
+            e.getChannel().sendMessage("```Music has been muted.```").queue();
         }
         else
         {
-            e.getChannel().sendMessage("`Music has been unmuted.`").queue();
+            e.getChannel().sendMessage("```Music has been unmuted.```").queue();
         }
     }
 
