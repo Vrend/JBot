@@ -16,29 +16,32 @@ public class CommandHandler
 
     public void loadCommands()
     {
-        //File admin = new File("src"+File.separator+"main"+File.separator+"java"+File.separator+"Admin");
-        //File admin = new File("Admin");
-        //File commands = new File("src"+File.separator+"main"+File.separator+"java"+File.separator+"Commands");
-        //File commands = new File("Commands");
-        File admin = null;
-        File commands = null;
 
-        ArrayList<String>[] lists = Main.getCommands();
-        acmds = lists[0];
-        cmds = lists[1];
-
-       /* for (File f : admin.listFiles())
+        if(Main.indev)
         {
-            String s = f.getName();
-            s = s.replace(".java", "");
-            acmds.add(s);
+            File admin = new File("src"+File.separator+"main"+File.separator+"java"+File.separator+"JBOT"+File.separator+"Admin");
+            File commands = new File("src"+File.separator+"main"+File.separator+"java"+File.separator+"JBOT"+File.separator+"Commands");
+
+            for (File f : admin.listFiles())
+            {
+                String s = f.getName();
+                s = s.replace(".java", "");
+                acmds.add(s);
+            }
+            for (File f : commands.listFiles())
+            {
+                String s = f.getName();
+                s = s.replace(".java", "");
+                cmds.add(s);
+            }
         }
-        for (File f : commands.listFiles())
+        else
         {
-            String s = f.getName();
-            s = s.replace(".java", "");
-            cmds.add(s);
-        }*/
+            ArrayList<String>[] lists = Main.getCommands();
+            acmds = lists[0];
+            cmds = lists[1];
+        }
+
     }
 
     public Command getCommand(String name) throws BadCommandException

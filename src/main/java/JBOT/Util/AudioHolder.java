@@ -6,34 +6,24 @@ import com.sedmelluq.discord.lavaplayer.player.DefaultAudioPlayerManager;
 import com.sedmelluq.discord.lavaplayer.source.AudioSourceManagers;
 
 
-public class AudioHolder
-{
-    private static AudioPlayerManager apm;
-    private static AudioPlayer player;
-    private static TrackSchedule ts;
+public class AudioHolder {
+    private AudioPlayer player;
+    private TrackSchedule ts;
 
-    public static void init()
-    {
-        apm = new DefaultAudioPlayerManager();
-        AudioSourceManagers.registerRemoteSources(apm);
+    public AudioHolder(AudioPlayerManager apm) {
         player = apm.createPlayer();
         ts = new TrackSchedule(player);
         player.addListener(ts);
         player.setVolume(25);
     }
 
-    public static AudioPlayerManager getManager()
-    {
-        return apm;
-    }
-
-    public static TrackSchedule getSchedule()
-    {
+    public TrackSchedule getSchedule() {
         return ts;
     }
 
-    public static AudioPlayer getPlayer()
+    public AudioPlayerSendHandler getSendHandler()
     {
-        return player;
+        return new AudioPlayerSendHandler(player);
     }
+
 }

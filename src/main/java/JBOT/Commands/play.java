@@ -1,12 +1,11 @@
 package JBOT.Commands;
 
-import JBOT.Util.AudioPlayerSendHandler;
+import JBOT.Main;
 import JBOT.Util.BadCommandException;
 import JBOT.Util.Command;
 import JBOT.Util.TrackSchedule;
 import JBOT.Util.AudioHolder;
 import com.sedmelluq.discord.lavaplayer.player.AudioLoadResultHandler;
-import com.sedmelluq.discord.lavaplayer.player.AudioPlayer;
 import com.sedmelluq.discord.lavaplayer.player.AudioPlayerManager;
 import com.sedmelluq.discord.lavaplayer.tools.FriendlyException;
 import com.sedmelluq.discord.lavaplayer.track.AudioPlaylist;
@@ -42,11 +41,11 @@ public class play implements Command
             }
         }
 
-        AudioPlayerManager playerManager = AudioHolder.getManager();
+        AudioPlayerManager playerManager = Main.getManager();
 
-        TrackSchedule ts = AudioHolder.getSchedule();
+        AudioHolder holder = Main.getGuildAudioPlayer(e.getGuild());
 
-        AudioPlayer player = AudioHolder.getPlayer();
+        TrackSchedule ts = holder.getSchedule();
 
         playerManager.loadItem(input, new AudioLoadResultHandler()
         {
@@ -82,7 +81,7 @@ public class play implements Command
 
         AudioManager am = e.getGuild().getAudioManager();
 
-        am.setSendingHandler(new AudioPlayerSendHandler(player));
+        am.setSendingHandler(holder.getSendHandler());
     }
 
     @Override

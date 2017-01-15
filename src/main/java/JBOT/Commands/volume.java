@@ -1,5 +1,6 @@
 package JBOT.Commands;
 
+import JBOT.Main;
 import JBOT.Util.AudioHolder;
 import JBOT.Util.BadCommandException;
 import JBOT.Util.Command;
@@ -16,7 +17,7 @@ public class volume implements Command
             throw new BadCommandException("Malformed Command Request: Improper Arguments");
         }
 
-        TrackSchedule ts = AudioHolder.getSchedule();
+        TrackSchedule ts = Main.getGuildAudioPlayer(e.getGuild()).getSchedule();
 
 
         try

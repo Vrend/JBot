@@ -1,5 +1,6 @@
 package JBOT.Commands;
 
+import JBOT.Main;
 import JBOT.Util.AudioHolder;
 import JBOT.Util.BadCommandException;
 import JBOT.Util.Command;
@@ -11,7 +12,7 @@ public class cs implements Command
     @Override
     public void run(MessageReceivedEvent e, String[] args) throws BadCommandException
     {
-        TrackSchedule ts = AudioHolder.getSchedule();
+        TrackSchedule ts = Main.getGuildAudioPlayer(e.getGuild()).getSchedule();
         String msg = ts.getSongInfo();
 
         e.getChannel().sendMessage(msg).queue();

@@ -1,6 +1,6 @@
 package JBOT.Commands;
 
-import JBOT.Util.AudioHolder;
+import JBOT.Main;
 import JBOT.Util.BadCommandException;
 import JBOT.Util.Command;
 import JBOT.Util.TrackSchedule;
@@ -11,7 +11,7 @@ public class mute implements Command
     @Override
     public void run(MessageReceivedEvent e, String[] args) throws BadCommandException
     {
-        TrackSchedule ts = AudioHolder.getSchedule();
+        TrackSchedule ts = Main.getGuildAudioPlayer(e.getGuild()).getSchedule();
         boolean b = ts.mute();
         if(b)
         {
