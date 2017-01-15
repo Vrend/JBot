@@ -40,10 +40,13 @@ public class Main
         acmds = new ArrayList<>();
         cmds = new ArrayList<>();
 
-        if(args[0].equals("indev"))
+        if(args.length != 0)
         {
-            System.out.println("Running in development environment");
-            indev = true;
+            if(args[0].equals("indev"))
+            {
+                System.out.println("Running in development environment");
+                indev = true;
+            }
         }
         else
         {

@@ -33,7 +33,7 @@
                     </descriptorRefs>
                     <archive>
                         <manifest>
-                            <mainClass>Main</mainClass>
+                            <mainClass>JBOT.Main</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
