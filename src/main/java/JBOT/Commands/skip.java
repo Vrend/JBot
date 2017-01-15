@@ -25,7 +25,6 @@ public class skip implements Command
             th--;
             th = Math.ceil(th/2.0);
             int thresh = (int) th;
-            System.out.println(th);
             v.setThresh(thresh);
 
             if(v.addVote())
