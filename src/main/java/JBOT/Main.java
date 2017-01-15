@@ -4,7 +4,6 @@ import JBOT.Util.AudioHolder;
 import JBOT.Listeners.messageListener;
 import JBOT.Util.IO;
 import JBOT.Util.Vote;
-import com.sedmelluq.discord.lavaplayer.player.AudioPlayer;
 import com.sedmelluq.discord.lavaplayer.player.AudioPlayerManager;
 import com.sedmelluq.discord.lavaplayer.player.DefaultAudioPlayerManager;
 import com.sedmelluq.discord.lavaplayer.source.AudioSourceManagers;
@@ -26,7 +25,6 @@ public class Main
 {
     private static ArrayList<String> acmds;
     private static ArrayList<String> cmds;
-
 
     public static boolean indev;
 
@@ -114,7 +112,6 @@ public class Main
         musicmanager = new HashMap<>();
         playerManager = new DefaultAudioPlayerManager();
         AudioSourceManagers.registerRemoteSources(playerManager);
-
     }
 
     public static synchronized AudioHolder getGuildAudioPlayer(Guild guild)
