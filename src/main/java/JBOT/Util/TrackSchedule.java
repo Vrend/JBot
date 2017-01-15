@@ -153,22 +153,26 @@ public class TrackSchedule extends AudioEventAdapter
 
         AudioTrack playing = player.getPlayingTrack();
 
-        long d = playing.getDuration();
-        String ds = Time.parseTime(d);
-        res += "1. "+playing.getInfo().title + " [ " + ds+" ]\n";
-
-
-        for (int i = 0; i < tracks.length; i++)
+        if(playing != null)
         {
-            AudioTrack track = (AudioTrack) tracks[i];
-            long dur = track.getDuration();
-            String durs = Time.parseTime(dur);
+            long d = playing.getDuration();
+            String ds = Time.parseTime(d);
+            res += "1. "+playing.getInfo().title + " [ " + ds+" ]\n";
 
-            res += (i+2)+". "+track.getInfo().title + " [ " + durs+" ]\n";
+
+            for (int i = 0; i < tracks.length; i++)
+            {
+                AudioTrack track = (AudioTrack) tracks[i];
+                long dur = track.getDuration();
+                String durs = Time.parseTime(dur);
+
+                res += (i+2)+". "+track.getInfo().title + " [ " + durs+" ]\n";
+            }
+            res += "```";
+            return res;
         }
-        res += "```";
 
-        return res;
+        return "";
     }
 
 }

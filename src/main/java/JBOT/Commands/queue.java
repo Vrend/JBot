@@ -15,7 +15,14 @@ public class queue implements Command
         AudioHolder holder = Main.getGuildAudioPlayer(e.getGuild());
         TrackSchedule ts = holder.getSchedule();
         String msg = ts.getQueue();
-        e.getChannel().sendMessage(msg).queue();
+        if(msg.equals(""))
+        {
+            e.getChannel().sendMessage("```No songs in queue```").queue();
+        }
+        else
+        {
+            e.getChannel().sendMessage(msg).queue();
+        }
     }
 
     @Override
