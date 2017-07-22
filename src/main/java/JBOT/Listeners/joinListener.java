@@ -2,11 +2,17 @@ package JBOT.Listeners;
 
 import JBOT.Main;
 import JBOT.Util.IO;
+import net.dv8tion.jda.core.entities.Role;
 import net.dv8tion.jda.core.events.guild.GuildJoinEvent;
 import net.dv8tion.jda.core.events.guild.GuildLeaveEvent;
+import net.dv8tion.jda.core.events.guild.member.GuildMemberJoinEvent;
+import net.dv8tion.jda.core.events.guild.member.GuildMemberLeaveEvent;
 import net.dv8tion.jda.core.hooks.ListenerAdapter;
+import net.dv8tion.jda.core.managers.GuildController;
+
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
 public class joinListener extends ListenerAdapter
 {
@@ -31,7 +37,6 @@ public class joinListener extends ListenerAdapter
             }
         }
         Main.configs.put(id, IO.getConfig(id));
-        System.out.println(Main.configs);
     }
 
     public void onGuildLeave(GuildLeaveEvent event)
@@ -48,7 +53,38 @@ public class joinListener extends ListenerAdapter
         }
 
         Main.configs.remove(id);
-        System.out.println(Main.configs);
+    }
+
+    public void onGuildMemberJoin(GuildMemberJoinEvent event)
+    {
+        super.onGuildMemberJoin(event);
+        System.out.println("User joined with the name "+event.getMember().getEffectiveName()+" and id "+event.getMember().getUser().getId());
+        String roleName = Main.configs.get(event.getGuild().getId()).get("newplayer");
+        Role needed = null;
+        if(roleName != null)
+        {
+            GuildController gc = event.getGuild().getController();
+            List<Role> roles = event.getGuild().getRoles();
+
+            for(Role r : roles)
+            {
+                if(r.getName().equals(roleName))
+                {
+                    needed = r;
+                    break;
+                }
+            }
+            if(needed != null)
+            {
+                gc.addRolesToMember(event.getMember(), needed).queue();
+            }
+        }
+    }
+
+    public void onGuildMemberLeave(GuildMemberLeaveEvent event)
+    {
+        super.onGuildMemberLeave(event);
+        System.out.println("User left with the name "+event.getMember().getEffectiveName()+" and id "+event.getMember().getUser().getId());
     }
 
 }

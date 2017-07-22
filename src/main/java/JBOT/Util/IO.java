@@ -4,10 +4,7 @@ import JBOT.Main;
 import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.entities.Guild;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -135,6 +132,100 @@ public class IO
         }
 
         Main.configs = getConfigs();
+    }
+
+    public static void updateTerm(String guildid, String tag, String data)
+    {
+        File config = new File("configs/"+guildid+"/config");
+
+        try
+        {
+            BufferedReader br = new BufferedReader(new FileReader(config));
+            String line;
+            while((line = br.readLine()) != null)
+            {
+                String[] terms = line.split("=");
+                if(tag.equals(terms[0]) && !data.equals(terms[1]))
+                {
+                    br.close();
+                    String oldLine = terms[0]+"="+terms[1];
+                    String newLine = tag+"="+data;
+
+                    br = new BufferedReader(new FileReader(config));
+                    String content = "";
+                    while((line = br.readLine()) != null)
+                    {
+                        content += line;
+                        content += "\n";
+                    }
+                    br.close();
+                    content = content.replace(oldLine, newLine);
+                    BufferedWriter bw = new BufferedWriter(new FileWriter(config));
+                    bw.write(content);
+                    bw.close();
+                    return;
+                }
+                else if(tag.equals(terms[0]) && data.equals(terms[1]))
+                {
+                    return;
+                }
+            }
+            br.close();
+
+            br = new BufferedReader(new FileReader(config));
+            String content = "";
+            while((line = br.readLine()) != null)
+            {
+                content += line;
+                content += "\n";
+            }
+            br.close();
+            content += tag+"="+data+"\n";
+
+            BufferedWriter bw = new BufferedWriter(new FileWriter(config));
+            bw.write(content);
+            bw.close();
+
+            HashMap<String, String> conf = Main.configs.get(guildid);
+            conf.put(tag, data);
+        }
+        catch(IOException e)
+        {
+            e.printStackTrace();
+        }
+    }
+
+    public static void removeTerm(String guildid, String tag)
+    {
+        File config = new File("configs/"+guildid+"/config");
+        try
+        {
+            BufferedReader br = new BufferedReader(new FileReader(config));
+            String content = "";
+            String line;
+            String oldLine = "";
+            while((line = br.readLine()) != null)
+            {
+                if(line.contains(tag))
+                {
+                    oldLine = line;
+                }
+                content += line;
+                content += "\n";
+            }
+            content = content.replace(oldLine, "");
+            br.close();
+
+            BufferedWriter bw = new BufferedWriter(new FileWriter(config));
+            bw.write(content);
+            bw.close();
+            HashMap<String, String> vals = Main.configs.get(guildid);
+            vals.remove("newplayer");
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
     }
 
 }
