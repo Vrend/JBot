@@ -1,5 +1,6 @@
 package JBOT;
 
+import JBOT.Listeners.joinListener;
 import JBOT.Listeners.messageListener;
 import JBOT.Util.AudioHolder;
 import JBOT.Util.IO;
@@ -31,11 +32,14 @@ public class Main
     private static AudioPlayerManager playerManager;
     private static Map<Long, AudioHolder> musicmanager;
 
+    public static HashMap<String, HashMap<String, String>> configs;
+
     public static void main(String[] args)
     {
         String botapi;
 
         botapi = IO.getKey("Keys/botapi.key");
+
 
         acmds = new ArrayList<>();
         cmds = new ArrayList<>();
@@ -99,7 +103,9 @@ public class Main
 
         try
         {
-            JDA jda = new JDABuilder(AccountType.BOT).setToken(botapi).addListener(new messageListener()).buildBlocking();
+            configs = IO.getConfigs();
+            JDA jda = new JDABuilder(AccountType.BOT).setToken(botapi).addListener(new messageListener()).addListener(new joinListener()).buildBlocking();
+            IO.updateConfigs(jda);
         }
         catch(Exception e)
         {
