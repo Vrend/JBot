@@ -116,7 +116,7 @@ public class Main
     }
 
 
-    public static void init()
+    private static void init()
     {
         musicmanager = new HashMap<>();
         playerManager = new DefaultAudioPlayerManager();
