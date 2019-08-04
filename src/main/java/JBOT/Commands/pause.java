@@ -13,7 +13,7 @@ public class pause implements Command
     public void run(MessageReceivedEvent e, String[] args) throws BadCommandException {
         TrackSchedule ts = Main.getGuildAudioPlayer(e.getGuild()).getSchedule();
 
-        e.getMessage().deleteMessage().queue();
+        e.getMessage().delete().queue();
 
         if (ts.getpaused())
         {

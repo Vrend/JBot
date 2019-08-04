@@ -25,13 +25,12 @@ public class messageListener extends ListenerAdapter
             TextChannel tc = e.getTextChannel();
             String name = e.getMember().getEffectiveName();
 
-            System.out.printf("(%s)[%s]<%s>: %s\n", g.getName(), tc.getName(), name, e.getMessage().getContent());
+            System.out.printf("(%s)[%s]<%s>: %s\n", g.getName(), tc.getName(), name, e.getMessage().getContentRaw());
         }
         else if(e.isFromType(ChannelType.PRIVATE))
         {
             PrivateChannel pvc = e.getPrivateChannel();
-
-            System.out.printf("[PRIV]<%s>: %s\n", author.getName(), e.getMessage().getContent());
+            System.out.printf("[PRIV]<%s>: %s\n", author.getName(), e.getMessage().getContentRaw());
         }
         else
         {
@@ -40,9 +39,9 @@ public class messageListener extends ListenerAdapter
 
         if(e.isFromType(ChannelType.TEXT))
         {
-            if(e.getMessage().getContent() != null)
+            if(e.getMessage().getContentRaw() != null)
             {
-                String msg = e.getMessage().getContent();
+                String msg = e.getMessage().getContentRaw();
 
                 String[] args = msg.split(" ");
 

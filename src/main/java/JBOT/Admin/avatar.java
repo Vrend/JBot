@@ -17,7 +17,7 @@ public class avatar implements Command
     {
         AccountManager manager = new AccountManager(e.getJDA().getSelfUser());
 
-        e.getMessage().deleteMessage().queue();
+        e.getMessage().delete().queue();
 
         try
         {

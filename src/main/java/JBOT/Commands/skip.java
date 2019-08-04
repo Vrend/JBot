@@ -12,7 +12,7 @@ public class skip implements Command
     @Override
     public void run(MessageReceivedEvent e, String[] args) throws BadCommandException
     {
-        if(Permissions.checkOwner(e.getMember().getUser().getId()))
+        if(e.getMember().isOwner())
         {
             Main.getGuildAudioPlayer(e.getGuild()).getSchedule().nextTrack();
             e.getChannel().sendMessage("```Skipping song....```").queue();

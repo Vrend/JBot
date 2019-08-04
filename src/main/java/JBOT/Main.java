@@ -104,7 +104,7 @@ public class Main
         try
         {
             configs = IO.getConfigs();
-            JDA jda = new JDABuilder(AccountType.BOT).setToken(botapi).addListener(new messageListener()).addListener(new joinListener()).buildBlocking();
+            JDA jda = new JDABuilder(AccountType.BOT).setToken(botapi).addEventListener(new messageListener()).addEventListener(new joinListener()).buildBlocking();
             IO.updateConfigs(jda);
         }
         catch(Exception e)

@@ -1,10 +1,10 @@
 #folders
 .idea/
 Keys/
+configs/
 target/
-lib/*
 out/
 
 #files
 JBot.iml
-!lib/Put Libraries Here
+!Keys/.gitkeep

@@ -8,7 +8,7 @@ public class Permissions
     public static boolean checkPermission(MessageReceivedEvent e, int lvl)
     {
         boolean isAdmin = false;
-        boolean isOwner = checkOwner(e.getMember().getUser().getId());
+        boolean isOwner = e.getMember().isOwner();
 
         if(e.getMember().getPermissions().contains(Permission.ADMINISTRATOR))
         {
@@ -31,11 +31,5 @@ public class Permissions
         {
             return false;
         }
-    }
-
-    public static boolean checkOwner(String id)
-    {
-        String owner = IO.getKey("Keys/owneruser.key");
-        return id.equals(owner);
     }
 }

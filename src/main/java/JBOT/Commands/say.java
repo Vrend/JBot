@@ -14,7 +14,7 @@ public class say implements Command
     {
         MessageChannel channel = e.getChannel();
 
-        e.getMessage().deleteMessage().queue();
+        e.getMessage().delete().queue();
 
         String msg = "";
 

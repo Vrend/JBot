@@ -10,7 +10,7 @@ public class shutdown implements Command
     @Override
     public void run(MessageReceivedEvent e, String[] args) throws BadCommandException
     {
-        e.getMessage().deleteMessage().queue();
+        e.getMessage().delete().queue();
         System.exit(0);
     }
 
