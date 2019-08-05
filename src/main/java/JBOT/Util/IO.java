@@ -21,9 +21,9 @@ public class IO
             output = br.readLine();
             br.close();
         }
-        catch(Exception e)
+        catch(IOException e)
         {
-            e.printStackTrace();
+            System.out.println("Failed to retrieve " + filename);
         }
 
         return output;

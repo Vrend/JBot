@@ -40,6 +40,10 @@ public class Main
 
         botapi = IO.getKey("Keys/botapi.key");
 
+        if(botapi.equals(""))
+        {
+            System.exit(1);
+        }
 
         acmds = new ArrayList<>();
         cmds = new ArrayList<>();
