@@ -77,7 +77,7 @@ public class CommandHandler
         }
         else
         {
-            throw new BadCommandException("Malformed Command Request: Command not found");
+            throw new BadCommandException("```Malformed Command Request: Command not found```");
         }
 
         return null;

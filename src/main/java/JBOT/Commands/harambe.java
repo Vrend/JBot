@@ -13,7 +13,7 @@ public class harambe implements Command
         Command play = new playSilent();
         String[] arguments = {"playSilent", "https://www.youtube.com/watch?v=OJw3MmL-Omk"};
         play.run(e, arguments);
-        e.getChannel().sendMessage("`we will never forget you, Harambe.`").queue();
+        e.getChannel().sendMessage("```we will never forget you, Harambe.```").queue();
     }
 
     @Override

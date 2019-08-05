@@ -11,7 +11,7 @@ public class pussy implements Command
     public void run(MessageReceivedEvent e, String[] args) throws BadCommandException
     {
         Command play = new playSilent();
-        String[] arguments = {"playSilent", "https://www.youtube.com/watch?v=RPfx_jFZQuI"};
+        String[] arguments = {"playSilent", "https://www.youtube.com/watch?v=4TVTm5xfvjk"};
         play.run(e, arguments);
     }
 

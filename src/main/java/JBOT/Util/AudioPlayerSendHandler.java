@@ -13,61 +13,32 @@ import net.dv8tion.jda.core.audio.AudioSendHandler;
 * Copied and pasted from lavaplayer's README
 * */
 
-
-// OLD VERSION
-
-//public class AudioPlayerSendHandler implements AudioSendHandler
-//{
-//    private final AudioPlayer audioPlayer;
-//    private AudioFrame lastFrame;
-//
-//    public AudioPlayerSendHandler(AudioPlayer audioPlayer)
-//    {
-//        this.audioPlayer = audioPlayer;
-//    }
-//
-//    @Override
-//    public boolean canProvide()
-//    {
-//        lastFrame = audioPlayer.provide();
-//        return lastFrame != null;
-//    }
-//
-//    @Override
-//    public byte[] provide20MsAudio()
-//    {
-//        return lastFrame.data;
-//    }
-//
-//    @Override
-//    public boolean isOpus()
-//    {
-//        return true;
-//    }
-//}
-
-
-public class AudioPlayerSendHandler implements AudioSendHandler {
+public class AudioPlayerSendHandler implements AudioSendHandler
+{
     private final AudioPlayer audioPlayer;
     private AudioFrame lastFrame;
 
-    public AudioPlayerSendHandler(AudioPlayer audioPlayer) {
+    public AudioPlayerSendHandler(AudioPlayer audioPlayer)
+    {
         this.audioPlayer = audioPlayer;
     }
 
     @Override
-    public boolean canProvide() {
+    public boolean canProvide()
+    {
         lastFrame = audioPlayer.provide();
         return lastFrame != null;
     }
 
     @Override
-    public byte[] provide20MsAudio() {
+    public byte[] provide20MsAudio()
+    {
         return lastFrame.getData();
     }
 
     @Override
-    public boolean isOpus() {
+    public boolean isOpus()
+    {
         return true;
     }
 }
