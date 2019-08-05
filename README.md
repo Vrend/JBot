@@ -9,7 +9,7 @@ A Discord bot
 
 ## How to Use
 
-**Make sure that the java version is set to 8**
+**Make sure that you're using Java 8**
 
 You will need to create a file called "botapi.key" in Keys, which is where you put the bot token so it can login
 
