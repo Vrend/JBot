@@ -5,6 +5,7 @@ import JBOT.Util.BadCommandException;
 import JBOT.Util.Command;
 import JBOT.Util.Permissions;
 import JBOT.Util.Vote;
+import net.dv8tion.jda.core.Permission;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
 public class skip implements Command
@@ -12,7 +13,7 @@ public class skip implements Command
     @Override
     public void run(MessageReceivedEvent e, String[] args) throws BadCommandException
     {
-        if(e.getMember().isOwner())
+        if(Permissions.isAdmin(e) || Permissions.isOwner(e))
         {
             Main.getGuildAudioPlayer(e.getGuild()).getSchedule().nextTrack();
             e.getChannel().sendMessage("```Skipping song....```").queue();

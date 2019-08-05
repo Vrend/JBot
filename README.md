@@ -11,7 +11,9 @@ A Discord bot
 
 **Make sure that you're using Java 8**
 
-You will need to create a file called "botapi.key" in Keys, which is where you put the bot token so it can login
+You will need to create "botapi.key" in Keys, which is where you put the bot token so it can login
+
+Then you will need to create "ownerid.key" in keys, where you put your discord user id for permissions
 
 ## License
 

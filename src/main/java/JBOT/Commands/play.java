@@ -7,6 +7,7 @@ import JBOT.Util.Command;
 import JBOT.Util.TrackSchedule;
 import com.sedmelluq.discord.lavaplayer.player.AudioLoadResultHandler;
 import com.sedmelluq.discord.lavaplayer.player.AudioPlayerManager;
+import com.sedmelluq.discord.lavaplayer.player.FunctionalResultHandler;
 import com.sedmelluq.discord.lavaplayer.tools.FriendlyException;
 import com.sedmelluq.discord.lavaplayer.track.AudioPlaylist;
 import com.sedmelluq.discord.lavaplayer.track.AudioTrack;
@@ -47,6 +48,7 @@ public class play implements Command
 
         TrackSchedule ts = holder.getSchedule();
 
+        String finalInput = input;
         playerManager.loadItem(input, new AudioLoadResultHandler()
         {
                     @Override
@@ -73,7 +75,10 @@ public class play implements Command
                     @Override
                     public void noMatches()
                     {
-                        e.getChannel().sendMessage(e.getMember().getAsMention()+": ```No matches found.```").queue();
+                        playerManager.loadItem("ytsearch: " + finalInput, new FunctionalResultHandler(null, playlist -> {
+                            String info = ts.queue(playlist.getTracks().get(0));
+                            e.getChannel().sendMessage(info).queue();
+                        }, () -> e.getChannel().sendMessage(e.getMember().getAsMention()+": No matches found.").queue(), null ));
                     }
 
                     @Override
