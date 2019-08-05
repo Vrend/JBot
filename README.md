@@ -6,6 +6,7 @@ A Discord bot
 * Maven: https://maven.apache.org/
 * JDA: https://github.com/DV8FromTheWorld/JDA
 * lavaplayer: https://github.com/sedmelluq/lavaplayer/
+* log4j2: https://logging.apache.org/log4j/2.x/
 
 ## How to Use
 
