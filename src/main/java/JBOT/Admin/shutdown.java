@@ -11,6 +11,14 @@ public class shutdown implements Command
     public void run(MessageReceivedEvent e, String[] args) throws BadCommandException
     {
         e.getMessage().delete().queue();
+        try
+        {
+            Thread.sleep(2000);
+        }
+        catch(InterruptedException exception)
+        {
+            System.out.println("Sleep failed...");
+        }
         System.exit(0);
     }
 
