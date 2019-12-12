@@ -29,6 +29,113 @@ public class IO
         return output;
     }
 
+    public static String[] getRoom(String guildId, String roomName)
+    {
+        if(!roomExists(guildId, roomName))
+        {
+            return null;
+        }
+
+        File roomFile = new File("configs/"+guildId+"/rooms");
+        try
+        {
+            BufferedReader br = new BufferedReader(new FileReader(roomFile));
+            String line;
+            while((line = br.readLine()) != null)
+            {
+                String[] candidateRoom = line.split(":");
+                if(candidateRoom[0].equals(roomName))
+                {
+                    return candidateRoom;
+                }
+            }
+            br.close();
+        }
+        catch(IOException e)
+        {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public static void addRoom(String guildId, String roomName, String password, String user)
+    {
+        File roomFile = new File("configs/"+guildId+"/rooms");
+        try
+        {
+            BufferedWriter bw = new BufferedWriter(new FileWriter(roomFile, true));
+            bw.write(roomName + ":" + password + ":" + user);
+            bw.newLine();
+            bw.close();
+        }
+        catch(IOException e)
+        {
+            e.printStackTrace();
+        }
+    }
+
+    public static void deleteRoom(String guildId, String roomName)
+    {
+        StringBuilder sb = new StringBuilder();
+        try
+        {
+            File roomFile = new File("configs/"+guildId+"/rooms");
+
+            if(!roomFile.exists())
+            {
+                return;
+            }
+            BufferedReader br = new BufferedReader(new FileReader(roomFile));
+            String line;
+            while((line = br.readLine()) != null)
+            {
+                String roomNameCandidate = line.split(":")[0];
+                if(!roomNameCandidate.equals(roomName))
+                {
+                    sb.append(line + "\n");
+                }
+            }
+            br.close();
+            BufferedWriter bw = new BufferedWriter(new FileWriter(roomFile));
+            bw.write(sb.toString());
+            bw.close();
+        }
+        catch(IOException e)
+        {
+            e.printStackTrace();
+        }
+    }
+
+    public static boolean roomExists(String guildId, String roomName) {
+        try
+        {
+            File roomFile = new File("configs/"+guildId+"/rooms");
+
+            if(!roomFile.exists())
+            {
+                return false;
+            }
+            BufferedReader br = new BufferedReader(new FileReader(roomFile));
+            String line;
+            while((line = br.readLine()) != null)
+            {
+                String roomNameCandidate = line.split(":")[0];
+                if(roomNameCandidate.equals(roomName))
+                {
+                    br.close();
+                    return true;
+                }
+            }
+            br.close();
+        }
+        catch(IOException e)
+        {
+            e.printStackTrace();
+        }
+
+        return false;
+    }
+
     public static HashMap getConfig(String id)
     {
         HashMap<String, String> map = new HashMap<>();
