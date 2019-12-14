@@ -3,6 +3,7 @@ package JBOT.Commands;
 import JBOT.Util.BadCommandException;
 import JBOT.Util.Command;
 import JBOT.Util.IO;
+import JBOT.Util.Permissions;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
 public class delete implements Command {
@@ -15,7 +16,7 @@ public class delete implements Command {
 
         String roomName = args[1];
         String[] room = IO.getRoom(e.getGuild().getId(), roomName);
-        if(room != null && (e.getMember().getUser().getId().equals(room[2].trim())))
+        if(room != null && ((e.getMember().getUser().getId().equals(room[2].trim())) || Permissions.isAdmin(e) || Permissions.isOwner(e)))
         {
             if(e.getGuild().getTextChannelsByName(roomName, true).size() > 0)
             {

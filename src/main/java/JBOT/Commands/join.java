@@ -23,6 +23,7 @@ public class join implements Command {
         }
         String roomName = args[1];
         if(e.getGuild().getRolesByName(roomName, true).size() < 1) {
+            e.getMessage().delete().queue();
             throw new BadCommandException("Malformed Command Request: Invalid Room");
         }
         String[] room = IO.getRoom(e.getGuild().getId(), roomName);
@@ -34,6 +35,7 @@ public class join implements Command {
         }
         else
         {
+            e.getMessage().delete().queue();
             throw new BadCommandException("Malformed Command Request: Wrong Password");
         }
     }

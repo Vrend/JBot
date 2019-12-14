@@ -19,6 +19,6 @@ public class harambe implements Command
     @Override
     public int getPermLevel()
     {
-        return 1;
+        return 0;
     }
 }

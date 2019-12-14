@@ -5,6 +5,8 @@ import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.entities.Guild;
 
 import java.io.*;
+import java.nio.file.Files;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -27,6 +29,92 @@ public class IO
         }
 
         return output;
+    }
+
+    public static void addPasta(String guildId, String name, String content)
+    {
+        File pastaFolder = new File("configs/"+guildId+"/pastas");
+        if(!pastaFolder.exists())
+        {
+            pastaFolder.mkdir();
+        }
+
+        File pastaFile = new File("configs/"+guildId+"/pastas/"+name);
+        try
+        {
+            BufferedWriter bw = new BufferedWriter(new FileWriter(pastaFile));
+            bw.write(content);
+            bw.close();
+        }
+        catch(IOException e)
+        {
+            e.printStackTrace();
+        }
+    }
+
+    public static String getPasta(String guildId, String name) throws IOException
+    {
+        File pastaFolder = new File("configs/"+guildId+"/pastas");
+        File pastaFile = new File("configs/"+guildId+"/pastas/"+name);
+
+        if(pastaFolder.exists() && pastaFile.exists())
+        {
+            return new String(Files.readAllBytes(pastaFile.toPath()));
+        }
+
+        return "";
+    }
+
+    public static ArrayList<String> getPastas(String guildId)
+    {
+        File pastaFolder = new File("configs/"+guildId+"/pastas");
+        if(pastaFolder.exists() && pastaFolder.isDirectory())
+        {
+            ArrayList<String> pastas = new ArrayList<>();
+
+            for(File file : pastaFolder.listFiles())
+            {
+                if(file.isFile())
+                {
+                    pastas.add(file.getName());
+                }
+            }
+            return pastas;
+        }
+        return null;
+    }
+
+
+    public static HashMap<String, Boolean> getRooms(String guildId)
+    {
+        File roomFile = new File("configs/"+guildId+"/rooms");
+        HashMap<String, Boolean> rooms = new HashMap<String, Boolean>();
+        if(roomFile.exists())
+        {
+            try
+            {
+                BufferedReader br = new BufferedReader(new FileReader(roomFile));
+                String line;
+                while((line = br.readLine()) != null)
+                {
+                    String[] room = line.split(":");
+                    if(room[1].trim().equals(""))
+                    {
+                        rooms.put(room[0].trim(), false);
+                    }
+                    else
+                    {
+                        rooms.put(room[0].trim(), true);
+                    }
+                }
+                br.close();
+            }
+            catch(IOException e)
+            {
+                e.printStackTrace();
+            }
+        }
+        return rooms;
     }
 
     public static String[] getRoom(String guildId, String roomName)

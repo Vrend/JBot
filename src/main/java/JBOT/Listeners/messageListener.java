@@ -85,7 +85,7 @@ public class messageListener extends ListenerAdapter
 
                             MessageChannel channel = e.getChannel();
                             String name = e.getMember().getAsMention();
-                            channel.sendMessage(name+": `"+e1.getMessage()+"`").queue();
+                            channel.sendMessage(name+": "+e1.getMessage()).queue();
 
                         }
                     }

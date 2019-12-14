@@ -30,6 +30,11 @@ public class playSilent implements Command
             {
                 am.openAudioConnection(vc);
             }
+
+            else
+            {
+                throw new BadCommandException("Malformed Command Request: Not in voice channel");
+            }
         }
 
         if(args.length < 2)
