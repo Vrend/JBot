@@ -84,6 +84,7 @@ public class play implements Command
                     @Override
                     public void loadFailed(FriendlyException throwable)
                     {
+                        throwable.printStackTrace();
                         e.getChannel().sendMessage("```" + e.getMember().getAsMention()+": Everything is exploding, kittens and children are massacred, and the world is ending. (Load failed)```").queue();
                     }
                 });
