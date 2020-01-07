@@ -11,7 +11,7 @@ public class orgasm implements Command
     public void run(MessageReceivedEvent e, String[] args) throws BadCommandException
     {
         Command play = new playSilent();
-        String[] arguments = {"playSilent", "https://www.youtube.com/watch?v=pjepDoTUvAI"};
+        String[] arguments = {"playSilent", "https://www.youtube.com/watch?v=dQVD6PxdqT0"};
         play.run(e, arguments);
     }
 

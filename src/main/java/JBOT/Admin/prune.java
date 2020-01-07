@@ -26,6 +26,7 @@ public class prune implements Command
         }
         catch(Exception e1)
         {
+            e1.printStackTrace();
             throw new BadCommandException("Malformed Command Request: Improper Arguments");
         }
 
