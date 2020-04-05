@@ -5,6 +5,7 @@ target/
 out/
 classes/
 configs/
+.gradle/
 
 #files
 JBot.iml
