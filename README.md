@@ -3,7 +3,7 @@ A Discord bot
 
 
 ## Dependencies
-* Maven: https://maven.apache.org/
+* Gradle: https://gradle.org/
 * JDA: https://github.com/DV8FromTheWorld/JDA
 * lavaplayer: https://github.com/sedmelluq/lavaplayer/
 * log4j2: https://logging.apache.org/log4j/2.x/
@@ -24,4 +24,4 @@ This program is distributed in the hope that it will be useful, but WITHOUT ANY 
 
 You should have received a copy of the GNU General Public License along with this program. If not, see https://www.gnu.org/licenses/.
 
-*Copyright © 2019 John Broderick*
+*Copyright © 2020 John Broderick*
