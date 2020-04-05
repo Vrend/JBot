@@ -45,7 +45,7 @@ public class messageListener extends ListenerAdapter
 
                 String[] args = msg.split(" ");
 
-                if(args[0].startsWith("'"))
+                if(args[0].startsWith("'") && !args[0].equals("'"))
                 {
                     CommandHandler cmds = new CommandHandler();
 
@@ -60,7 +60,7 @@ public class messageListener extends ListenerAdapter
                         System.out.println(e1.getMessage());
                         MessageChannel channel = e.getChannel();
                         String name = e.getMember().getAsMention();
-                        channel.sendMessage(name+": `"+e1.getMessage()+"`").queue();
+                        channel.sendMessage(name+": "+e1.getMessage()).queue();
                     }
 
                     if(req != null)
