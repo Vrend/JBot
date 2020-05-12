@@ -17,11 +17,11 @@ public class pause implements Command
 
         if (ts.getpaused())
         {
-            e.getChannel().sendMessage("`Resuming song`").queue();
+            e.getChannel().sendMessage("```Resuming song```").queue();
         }
         else
         {
-            e.getChannel().sendMessage("`Pausing song`").queue();
+            e.getChannel().sendMessage("```Pausing song```").queue();
         }
         ts.pause();
     }
