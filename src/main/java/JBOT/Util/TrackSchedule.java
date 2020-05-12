@@ -1,12 +1,16 @@
 package JBOT.Util;
 
+import JBOT.Main;
 import com.sedmelluq.discord.lavaplayer.player.AudioPlayer;
 import com.sedmelluq.discord.lavaplayer.player.event.AudioEventAdapter;
 import com.sedmelluq.discord.lavaplayer.track.AudioTrack;
 import com.sedmelluq.discord.lavaplayer.track.AudioTrackEndReason;
+import net.dv8tion.jda.core.JDA;
+import net.dv8tion.jda.core.entities.Guild;
 
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
+import java.util.concurrent.TimeUnit;
 
 /**
  * This class schedules tracks for the audio player. It contains the queue of tracks.
@@ -15,17 +19,19 @@ public class TrackSchedule extends AudioEventAdapter
 {
     private final AudioPlayer player;
     private final BlockingQueue<AudioTrack> queue;
-    private static boolean paused;
+    private static boolean paused = false;
     private static int vol;
     private static boolean muted = false;
+    private Guild guild;
 
     /**
      * @param player The audio player this scheduler uses
      */
-    public TrackSchedule(AudioPlayer player)
+    public TrackSchedule(AudioPlayer player, Guild guild)
     {
         this.player = player;
         this.queue = new LinkedBlockingQueue<>();
+        this.guild = guild;
     }
 
     /**
@@ -50,6 +56,7 @@ public class TrackSchedule extends AudioEventAdapter
         {
             queue.offer(track);
         }
+
         return output;
     }
 
@@ -60,7 +67,16 @@ public class TrackSchedule extends AudioEventAdapter
     {
         // Start the next track, regardless of if something is already playing or not. In case queue was empty, we are
         // giving null to startTrack, which is a valid argument and will simply stop the player.
-        player.startTrack(queue.poll(), false);
+//        player.startTrack(queue.poll(), false);
+
+        AudioTrack track = queue.poll();
+        if(track == null) {
+            // No tracks left
+            guild.getAudioManager().closeAudioConnection();
+            clearQueue();
+        }
+        player.startTrack(track, false);
+
     }
 
     @Override
@@ -77,20 +93,13 @@ public class TrackSchedule extends AudioEventAdapter
     {
         player.stopTrack();
         queue.clear();
+        guild.getAudioManager().closeAudioConnection();
     }
 
     public void pause()
     {
-        if(paused)
-        {
-            player.setPaused(false);
-            paused = false;
-        }
-        else
-        {
-            paused = true;
-            player.setPaused(true);
-        }
+        paused = !paused;
+        player.setPaused(paused);
     }
 
     public boolean getpaused()

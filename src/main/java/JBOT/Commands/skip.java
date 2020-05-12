@@ -15,8 +15,8 @@ public class skip implements Command
     {
         if(Permissions.isAdmin(e) || Permissions.isOwner(e))
         {
-            Main.getGuildAudioPlayer(e.getGuild()).getSchedule().nextTrack();
             e.getChannel().sendMessage("```Skipping song....```").queue();
+            Main.getGuildAudioPlayer(e.getGuild()).getSchedule().nextTrack();
         }
         else
         {

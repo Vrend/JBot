@@ -8,6 +8,7 @@ import JBOT.Util.Vote;
 import com.sedmelluq.discord.lavaplayer.player.AudioPlayerManager;
 import com.sedmelluq.discord.lavaplayer.player.DefaultAudioPlayerManager;
 import com.sedmelluq.discord.lavaplayer.source.AudioSourceManagers;
+import jdk.nashorn.internal.scripts.JD;
 import net.dv8tion.jda.core.AccountType;
 import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.JDABuilder;
@@ -134,7 +135,7 @@ public class Main
 
         if(holder == null)
         {
-            holder = new AudioHolder(playerManager);
+            holder = new AudioHolder(playerManager, guild);
             musicmanager.put(guildId, holder);
         }
 
