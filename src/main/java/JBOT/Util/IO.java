@@ -65,6 +65,18 @@ public class IO
         return "";
     }
 
+    public static boolean deletePasta(String guildId, String name)
+    {
+        File pastaFolder = new File("configs/"+guildId+"/pastas");
+        File pastaFile = new File("configs/"+guildId+"/pastas/"+name);
+
+        if(pastaFolder.exists() && pastaFile.exists())
+        {
+            return pastaFile.delete();
+        }
+        return false;
+    }
+
     public static ArrayList<String> getPastas(String guildId)
     {
         File pastaFolder = new File("configs/"+guildId+"/pastas");

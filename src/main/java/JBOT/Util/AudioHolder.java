@@ -13,7 +13,7 @@ public class AudioHolder {
         player = apm.createPlayer();
         ts = new TrackSchedule(player, guild);
         player.addListener(ts);
-        player.setVolume(25);
+        player.setVolume(100);
     }
 
     public TrackSchedule getSchedule() {
