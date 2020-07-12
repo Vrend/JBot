@@ -9,6 +9,8 @@ import net.dv8tion.jda.core.entities.*;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.core.hooks.ListenerAdapter;
 
+import java.sql.Timestamp;
+
 public class messageListener extends ListenerAdapter
 {
     @Override
@@ -19,18 +21,19 @@ public class messageListener extends ListenerAdapter
 
         User author = e.getAuthor();
 
+        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+
         if(e.isFromType(ChannelType.TEXT))
         {
             Guild g = e.getGuild();
             TextChannel tc = e.getTextChannel();
             String name = e.getMember().getEffectiveName();
-
-            System.out.printf("(%s)[%s]<%s>: %s\n", g.getName(), tc.getName(), name, e.getMessage().getContentRaw());
+            System.out.printf("%s (%s)[%s]<%s>: %s\n", timestamp, g.getName(), tc.getName(), name, e.getMessage().getContentRaw());
         }
         else if(e.isFromType(ChannelType.PRIVATE))
         {
             PrivateChannel pvc = e.getPrivateChannel();
-            System.out.printf("[PRIV]<%s>: %s\n", author.getName(), e.getMessage().getContentRaw());
+            System.out.printf("[PRIV] %s  <%s>: %s\n", timestamp, author.getName(), e.getMessage().getContentRaw());
         }
         else
         {
